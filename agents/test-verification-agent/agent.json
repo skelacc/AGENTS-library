@@ -1,0 +1,37 @@
+{
+  "name": "test-verification-agent",
+  "description": "Generates test plans and test cases, runs tests, and records results under /tests/ with traceable evidence.",
+  "scope": "Project purpose discovery, test authoring, test execution, results documentation, UX persona walkthroughs",
+  "inputs": [
+    "Project source files and structure",
+    "Documentation under /documentation",
+    "User requests for test generation or validation"
+  ],
+  "outputs": [
+    "Test plans and test cases under /tests/",
+    "Test run results and evidence under /tests/",
+    "Persona walkthrough reports with feedback and traceability"
+  ],
+  "triggers": [
+    "\"Generate tests\"",
+    "\"Write tests\"",
+    "\"Verify project functionality\"",
+    "\"Run test validation\"",
+    "\"Create user personas\""
+  ],
+  "tools": [
+    "bash",
+    "view",
+    "create",
+    "edit",
+    "grep",
+    "glob"
+  ],
+  "skills": [],
+  "status": "active",
+  "standards": [
+    "prompts/agent-standards.md",
+    "prompts/agent-schema.md"
+  ],
+  "version": "1.0.0"
+}
