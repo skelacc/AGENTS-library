@@ -1,0 +1,63 @@
+{
+  "name": "distribute-agents-agent",
+  "description": "Automatically detects new projects and synchronizes agent-kit from GitHub repository into each project. Manages lockfile-based version control to prevent unwanted overwrites.",
+  "scope": "Project-level agent distribution, lockfile management, version control, safe updates",
+  "inputs": [
+    "Project context detection (checking for agents.lockfile)",
+    "User requests for agent synchronization or updates",
+    "GitHub repository reference (https://github.com/skelacc/AGENTS-library)",
+    "Lockfile content (tracks synced agent versions and customizations)"
+  ],
+  "outputs": [
+    "Synchronized agents downloaded into project folder (.github/agents/, agent-kit/, or custom location)",
+    "Updated agents.lockfile tracking versions and customizations",
+    "Sync status reports with version information",
+    "Conflict detection when local customizations exist"
+  ],
+  "triggers": [
+    "\"Distribute agents\" (auto-sync if needed)",
+    "\"Setup agents\" (initialize for new project)",
+    "\"Sync agents\" (auto-detect best mode)",
+    "\"Update all agents\" (full replacement from GitHub)",
+    "\"Add new agents\" (preserve existing, add new only)",
+    "\"Update agents to latest\" (sync with version report)",
+    "Project detection with missing agents.lockfile"
+  ],
+  "tools": [
+    "bash",
+    "create",
+    "edit",
+    "view",
+    "fetch"
+  ],
+  "skills": [
+    "skills/distribute-agents/detect-project.md",
+    "skills/distribute-agents/check-lockfile.md",
+    "skills/distribute-agents/fetch-from-github.md",
+    "skills/distribute-agents/sync-full.md",
+    "skills/distribute-agents/sync-new-only.md",
+    "skills/distribute-agents/update-lockfile.md"
+  ],
+  "status": "active",
+  "standards": [
+    "prompts/agent-standards.md",
+    "prompts/agent-schema.md"
+  ],
+  "behavior_modes": [
+    "auto_sync_new_projects",
+    "lockfile_respecting",
+    "conflict_aware",
+    "version_tracking",
+    "customization_preserving"
+  ],
+  "configuration": {
+    "github_source": "https://github.com/skelacc/AGENTS-library",
+    "lockfile_name": "agents.lockfile",
+    "project_locations": [
+      ".github/agents",
+      "agent-kit",
+      ".",
+      "docs/agent-kit"
+    ]
+  }
+}

@@ -1,17 +1,15 @@
 {
   "version": "1.0.0",
-  "global_location": "~/.github/agent-kit",
   "paths": {
-    "agents_directory": "~/.github/agent-kit/agents",
-    "skills_directory": "~/.github/agent-kit/skills",
-    "prompts_directory": "~/.github/agent-kit/prompts",
-    "templates_directory": "~/.github/agent-kit/templates",
-    "examples_directory": "~/.github/agent-kit/examples"
+    "agents_directory": "agents",
+    "skills_directory": "skills",
+    "prompts_directory": "prompts",
+    "templates_directory": "templates",
+    "examples_directory": "examples"
   },
   "documentation": {
     "agents_file": "AGENTS.md",
-    "location": "project_root",
-    "note": "Each project can have its own AGENTS.md documenting which agents it uses"
+    "location": "project_root"
   },
   "settings": {
     "auto_register": true,
@@ -22,10 +20,5 @@
       "skills": 100
     },
     "naming_convention": "lowercase-hyphen-separated"
-  },
-  "project_integration": {
-    "note": "Projects reference this global location instead of copying files",
-    "config_file": ".github/agents-config.json",
-    "use_global_agents": true
   }
 }

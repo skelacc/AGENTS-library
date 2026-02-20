@@ -31,6 +31,17 @@ This document catalogs all agents included in the Agent-Kit collection. These ag
 
 ---
 
+## distribute-agents-agent
+**Purpose**: Automatically detects new projects and synchronizes agent-kit from the repository. Manages lockfile-based version control to prevent unwanted overwrites.
+**Scope**: Project-level agent distribution, lockfile management, safe updates
+**Status**: Active
+**Triggers**: "Distribute agents", "Setup agents", "Sync agents", "Update all agents", "Add new agents", "Update agents to latest"
+**Location**: `agent-kit/agents/distribute-agents-agent/`
+**Behavior Modes**: Auto-sync new projects, lockfile-respecting, conflict-aware, customization-preserving
+**Source Repository**: https://github.com/skelacc/AGENTS-library
+
+---
+
 ## Configuration
 
 All paths are configurable via `agent-kit/config.json`. Default structure:
@@ -39,7 +50,7 @@ All paths are configurable via `agent-kit/config.json`. Default structure:
 - Prompts: `agent-kit/prompts/`
 - Documentation: `AGENTS.md` (root)
 
-See [INTEGRATION.md](INTEGRATION.md) for setup instructions.
+See [SETUP.md](SETUP.md) for setup instructions.
 
 ## Creating New Agents
 
@@ -52,7 +63,7 @@ The new agent will be generated in your configured agents_directory with all req
 
 ## Need Help?
 
-- Setup: Read [INTEGRATION.md](INTEGRATION.md)
+- Setup: Read [SETUP.md](SETUP.md)
 - Examples: See [examples/integration-examples.md](examples/integration-examples.md)
 - Standards: Review [prompts/agent-standards.md](prompts/agent-standards.md)
 - Customization: Edit [config.json](config.json)
