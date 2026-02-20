@@ -42,6 +42,16 @@ This document catalogs all agents included in the Agent-Kit collection. These ag
 
 ---
 
+## architecture-monitor-agent
+**Purpose**: Monitors project architecture and KPIs, generating documentation with graphs and changelog updates.
+**Scope**: Architecture visualization, KPI tracking, documentation updates in /documentation
+**Status**: Active
+**Triggers**: "Update architecture docs", "Generate architecture report", "Refresh project KPIs", "Every 2 commits"
+**Location**: `agent-kit/agents/architecture-monitor-agent/`
+**Outputs**: dependency-graph, module-graph, service-graph, kpis, changelog
+
+---
+
 ## Configuration
 
 All paths are configurable via `agent-kit/config.json`. Default structure:

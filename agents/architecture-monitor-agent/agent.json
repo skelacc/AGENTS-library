@@ -1,0 +1,40 @@
+{
+  "name": "architecture-monitor-agent",
+  "description": "Monitors project architecture and KPIs, generating documentation with graphs and changelog updates.",
+  "scope": "Architecture visualization, KPI tracking, documentation updates in /documentation",
+  "inputs": [
+    "Project structure and source files",
+    "Git history and recent changes",
+    "User requests to refresh architecture docs"
+  ],
+  "outputs": [
+    "Architecture docs in /documentation",
+    "Dependency, module, and service graphs",
+    "KPI snapshots and change summaries",
+    "Updated changelog.md"
+  ],
+  "triggers": [
+    "\"Update architecture docs\"",
+    "\"Generate architecture report\"",
+    "\"Refresh project KPIs\"",
+    "Project opened with significant changes",
+    "Every 2 commits (or larger change sets)"
+  ],
+  "tools": [
+    "bash",
+    "view",
+    "create",
+    "edit",
+    "grep",
+    "glob"
+  ],
+  "skills": [
+    "skills/architecture-monitor/collect-kpis.md"
+  ],
+  "status": "active",
+  "standards": [
+    "prompts/agent-standards.md",
+    "prompts/agent-schema.md"
+  ],
+  "version": "1.0.0"
+}
