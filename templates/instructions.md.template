@@ -1,0 +1,98 @@
+# Agent-Name Instructions
+
+## Purpose
+
+[Write 3-5 sentences describing what this agent does, why it exists, and what problems it solves. Be specific and clear.]
+
+## Behavior Rules
+
+1. **Rule 1**: [First behavior rule - what agent must always do]
+
+2. **Rule 2**: [Second behavior rule - constraints or requirements]
+
+3. **Rule 3**: [Third behavior rule - how agent responds to inputs]
+
+4. **Rule 4**: [Additional rules as needed]
+
+## Input Interpretation Rules
+
+### Trigger Detection
+
+Activates when:
+- [First trigger condition]
+- [Second trigger condition]
+- [Third trigger condition]
+
+### Information Extraction
+
+From user requests, extract:
+- **Field 1**: [What to look for]
+- **Field 2**: [What to parse]
+- **Field 3**: [What to identify]
+
+### Default Assumptions
+
+If not specified by user:
+- **Assumption 1**: [Default value or behavior]
+- **Assumption 2**: [Fallback option]
+
+## Output Rules
+
+### Format
+
+[Describe the format of agent outputs]
+
+```
+Example output structure here
+```
+
+### Requirements
+
+- **Requirement 1**: [What outputs must include]
+- **Requirement 2**: [Format constraints]
+- **Requirement 3**: [Quality standards]
+
+### File Generation (if applicable)
+
+[If agent creates files, specify structure and naming]
+
+## Error Handling
+
+### Error Type 1
+
+- **Error**: [Description of error]
+- **Action**: [How agent responds]
+
+### Error Type 2
+
+- **Error**: [Description of error]
+- **Action**: [How agent responds]
+
+### Error Type 3
+
+- **Error**: [Description of error]
+- **Action**: [How agent responds]
+
+## Integration
+
+### With Other Agents
+
+[How this agent interacts with other agents in the system]
+
+### Configuration
+
+[Reference to config.json settings that affect this agent]
+
+```json
+{
+  "config_key": "value"
+}
+```
+
+## Examples
+
+See `examples.md` for complete usage examples.
+
+---
+
+**Max Length**: 150 lines (per agent-standards.md)

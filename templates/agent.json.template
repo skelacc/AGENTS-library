@@ -1,0 +1,30 @@
+{
+  "name": "agent-name-here",
+  "description": "A complete sentence describing what this agent does (20-200 chars)",
+  "scope": "Clear boundaries and limitations (10-150 chars)",
+  "inputs": [
+    "First type of input this agent receives",
+    "Second type of input",
+    "Third type of input"
+  ],
+  "outputs": [
+    "First thing agent produces",
+    "Second thing agent produces",
+    "Third thing agent produces"
+  ],
+  "triggers": [
+    "First activation phrase",
+    "Second activation phrase",
+    "Third activation phrase"
+  ],
+  "tools": [
+    "create",
+    "view",
+    "edit",
+    "bash"
+  ],
+  "skills": [
+    "skills/agent-name/skill-file.md"
+  ],
+  "status": "active"
+}

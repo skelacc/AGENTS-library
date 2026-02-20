@@ -1,0 +1,41 @@
+{
+  "name": "doc-registry-agent",
+  "description": "Monitors all agents and maintains human-readable documentation with summaries of each agent's name, purpose, and activation triggers",
+  "scope": "Agent registration, documentation maintenance, and discovery",
+  "inputs": [
+    "Agent metadata from agent.json files",
+    "Registration requests from CAA",
+    "Documentation refresh requests",
+    "New agent notifications"
+  ],
+  "outputs": [
+    "Documentation file (default: AGENTS.md) with formatted agent entries",
+    "Registration confirmations",
+    "Agent discovery summaries"
+  ],
+  "triggers": [
+    "New agent created",
+    "\"Register agent\"",
+    "\"Update AGENTS.md\"",
+    "\"List all agents\"",
+    "\"Refresh agent docs\""
+  ],
+  "tools": [
+    "view",
+    "edit",
+    "create",
+    "bash",
+    "grep",
+    "glob"
+  ],
+  "skills": [],
+  "status": "active",
+  "configuration": {
+    "note": "Paths resolved from agent-kit/config.json or project config",
+    "configurable_paths": [
+      "agents_directory",
+      "documentation.agents_file",
+      "documentation.location"
+    ]
+  }
+}

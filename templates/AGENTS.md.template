@@ -1,0 +1,26 @@
+# Agents Documentation
+
+This document lists all available agents in the system. Each agent is a specialized assistant that handles specific tasks automatically. Use these agents to streamline your workflow and automate repetitive tasks.
+
+## Quick Start
+
+To activate an agent, simply use one of its trigger phrases in your conversation. Agents are always listening and will automatically respond when they detect relevant requests.
+
+---
+
+## agent-name-example
+**Purpose**: [One sentence describing what this agent does]
+**Scope**: [Define boundaries and limitations]
+**Status**: [Active|Inactive|Experimental]
+**Triggers**: [Comma-separated list of activation phrases]
+**Location**: `/agents/agent-name-example/` or configure in `agent-kit/config.json`
+
+---
+
+## Need a New Agent?
+
+If you need functionality that doesn't exist yet, just ask! Say something like "Create an agent that does X" and the Create-Agent-Agent will build it for you automatically.
+
+---
+
+**Note**: This file is automatically maintained by the doc-registry-agent. To update, use triggers like "Update AGENTS.md" or "List all agents".

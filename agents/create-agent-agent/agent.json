@@ -1,0 +1,50 @@
+{
+  "name": "create-agent-agent",
+  "description": "Automatically detects requests for new agents and generates complete agent folder structures with all required files following unified standards",
+  "scope": "Agent creation, validation, and registration",
+  "inputs": [
+    "Natural language descriptions of desired agent behavior",
+    "Agent purpose statements",
+    "Implied or explicit agent requirements"
+  ],
+  "outputs": [
+    "Complete agent folder structure in configured agents_directory",
+    "agent.json with all required fields",
+    "instructions.md with standardized sections",
+    "examples.md with usage examples",
+    "Documentation update preview for Doc-Registry-Agent"
+  ],
+  "triggers": [
+    "\"Create an agent that...\"",
+    "\"I want an agent which...\"",
+    "\"Make me an agent for...\"",
+    "\"I need an agent that...\"",
+    "Any request describing desired agent behavior"
+  ],
+  "tools": [
+    "create",
+    "view",
+    "edit",
+    "bash"
+  ],
+  "skills": [
+    "skills/create-agent/create-folder-structure.md",
+    "skills/create-agent/generate-agent-json.md",
+    "skills/create-agent/generate-instructions.md",
+    "skills/create-agent/register-agent.md"
+  ],
+  "status": "active",
+  "standards": [
+    "prompts/agent-standards.md",
+    "prompts/agent-schema.md",
+    "prompts/agent-style-guide.md"
+  ],
+  "configuration": {
+    "note": "Paths resolved from agent-kit/config.json or project config",
+    "configurable_paths": [
+      "agents_directory",
+      "skills_directory",
+      "prompts_directory"
+    ]
+  }
+}
