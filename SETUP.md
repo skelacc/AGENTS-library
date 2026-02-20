@@ -1,50 +1,43 @@
 # Agent-Kit Setup Guide
 
-Agent-Kit is automatically synchronized to your projects via the distribute-agents-agent (DAA).
+Agent-Kit is automatically synchronized to your projects via the **distribute-agents-agent (DAA)**. Agents are deployed to your project's `.github/agents/` directory.
 
 ## How It Works
 
-1. **DAA Detects**: When you open a project without `agents.lockfile`
-2. **DAA Downloads**: Fetches latest agent-kit from https://github.com/skelacc/AGENTS-library
-3. **DAA Creates Lockfile**: Locks the synced agents to prevent overwrites
-4. **Ready to Use**: Agents available immediately in your project
+```
+Open new project
+↓
+DAA detects missing agents.lockfile
+↓
+DAA fetches agents from GitHub repository
+↓
+DAA creates .github/agents/ with agent folders
+↓
+DAA creates agents.lockfile for version tracking
+↓
+✓ Agents ready to use with VS Code Copilot
+```
 
 ## Automatic Setup (Recommended)
 
-No manual setup needed! The DAA handles everything:
+No manual setup needed! The DAA handles everything automatically:
 
-```
-Open new project
-  ↓
-DAA detects missing agents.lockfile
-  ↓
-DAA fetches agent-kit from GitHub
-  ↓
-DAA creates .github/agents/ (or agent-kit/)
-  ↓
-DAA creates agents.lockfile
-  ↓
-✓ Agents ready to use
-```
+1. **Open** your project in VS Code
+2. **Wait** for DAA to detect missing agents.lockfile
+3. **Done** — agents appear in `.github/agents/`
+
+The lockfile prevents accidental overwrites on future syncs.
 
 ## Manual Setup (Alternative)
 
-If you prefer to set up manually:
+If you prefer to set up agents manually:
 
 ```bash
-# Option 1: Into .github/agents/ (GitHub config directory)
-cp -r agent-kit project/.github/agents/
+# Copy agents into project
+cp -r agents/ your-project/.github/agents/
 
-# Option 2: Into project root
-cp -r agent-kit project/agent-kit/
-
-# Option 3: Into docs folder
-cp -r agent-kit project/docs/agent-kit/
-```
-
-Then create an `agents.lockfile`:
-```bash
-cat > agents.lockfile << 'EOF'
+# Create lockfile
+cat > your-project/agents.lockfile << 'LOCKFILE'
 {
   "synced_at": "2026-02-20T00:00:00Z",
   "source": "https://github.com/skelacc/AGENTS-library",
@@ -52,22 +45,52 @@ cat > agents.lockfile << 'EOF'
   "agents": {
     "create-agent-agent": "1.0.0",
     "doc-registry-agent": "1.0.0",
-    "distribute-agents-agent": "1.0.0"
+    "distribute-agents-agent": "1.0.0",
+    "architecture-monitor-agent": "1.0.0",
+    "test-verification-agent": "1.0.0"
   }
 }
-EOF
+LOCKFILE
 ```
+
+## Project Structure
+
+After setup, your project will have:
+
+```
+your-project/
+├── .github/
+│   └── agents/
+│       ├── create-agent-agent/
+│       │   ├── agent.json           # Agent metadata
+│       │   ├── AGENT.md             # Entry point (VS Code Copilot)
+│       │   └── examples.md          # Usage examples
+│       ├── doc-registry-agent/
+│       ├── distribute-agents-agent/
+│       ├── architecture-monitor-agent/
+│       └── test-verification-agent/
+├── agents.lockfile                  # Version & customization tracking
+└── AGENTS.md                         # Agent catalog (auto-maintained)
+```
+
+## Agent Entry Point
+
+VS Code Copilot **requires** agents to be named `AGENT.md` to be auto-discovered. Each agent folder contains:
+
+- **AGENT.md** — Entry point with purpose, behavior rules, and triggers
+- **agent.json** — Metadata and configuration
+- **examples.md** — Usage examples and workflows
 
 ## Configuration
 
-The `agent-kit/config.json` file is pre-configured for relative paths:
+Agents use configurable paths in `.github/config.json`:
 
 ```json
 {
   "paths": {
-    "agents_directory": "agents",
-    "skills_directory": "skills",
-    "prompts_directory": "prompts"
+    "agents_directory": ".github/agents",
+    "skills_directory": ".github/skills",
+    "prompts_directory": ".github/prompts"
   },
   "documentation": {
     "agents_file": "AGENTS.md",
@@ -76,11 +99,12 @@ The `agent-kit/config.json` file is pre-configured for relative paths:
 }
 ```
 
-**No edits needed** — works for any project location.
+**The defaults work for most projects.** Only customize if agents are in a different location.
 
-### If Agent-Kit is Nested Differently
+### Custom Paths
 
-**Agent-Kit at `project/tools/agent-kit/`:**
+If agents are nested differently (e.g., `tools/agent-kit/`):
+
 ```json
 {
   "paths": {
@@ -91,89 +115,61 @@ The `agent-kit/config.json` file is pre-configured for relative paths:
 }
 ```
 
-**Agent-Kit at `project/.github/agents/`:**
-```json
-{
-  "paths": {
-    "agents_directory": ".github/agents/agents",
-    "skills_directory": ".github/agents/skills",
-    "prompts_directory": ".github/agents/prompts"
-  }
-}
-```
-```json
-{
-  "paths": {
-    "agents_directory": ".github/agent-kit/agents",
-    "skills_directory": ".github/agent-kit/skills"
-  }
-}
-```
-
 ## Using Agents
 
-Agents activate automatically via trigger phrases. Just mention them naturally:
+Agents activate automatically via trigger phrases. Use natural language:
 
-| Phrase | Agent | Action |
+### Trigger Examples
+
+| Phrase | Agent | Result |
 |--------|-------|--------|
-| "Create an agent that..." | create-agent-agent | Generates new agent |
-| "Update AGENTS.md" | doc-registry-agent | Refreshes documentation |
-| "List all agents" | doc-registry-agent | Displays available agents |
+| "Create an agent that..." | create-agent-agent | New agent in `.github/agents/` |
+| "Update AGENTS.md" | doc-registry-agent | Documentation refreshed |
+| "List all agents" | doc-registry-agent | Shows all available agents |
+| "Update all agents" | distribute-agents-agent | Syncs latest from GitHub |
+| "Add new agents" | distribute-agents-agent | Adds only new agents (preserves existing) |
 
-**Example**: 
+**Example**:
 ```
 "Create an agent that validates API responses"
-→ New agent generated in agents/api-validator-agent/
+↓
+New folder: .github/agents/api-validator-agent/
+├── agent.json
+├── AGENT.md
+└── examples.md
 ```
 
-## File Locations
+## Synchronizing Agents
 
-Quick reference for where files are stored:
-
+### Check for Updates
 ```
-agent-kit/
-├── config.json            # Paths & settings
-├── agents/                # All agent definitions
-│   └── <agent-name>/
-│       ├── agent.json     # Metadata & triggers
-│       ├── instructions.md # Behavior rules
-│       └── examples.md    # Usage examples
-├── skills/                # Reusable procedures
-├── prompts/               # Standards & guidelines
-├── templates/             # Quick-start templates
-└── examples/              # Integration patterns
+"Update all agents"
 ```
+Fetches latest from GitHub and replaces all agent files.
 
-## Common Tasks
-
-### Create a Custom Agent
+### Add New Agents Only
 ```
-"Create an agent that runs linting on changed files"
-
-
-## Using Agents
-
-Agents activate immediately via trigger phrases:
-
-| Trigger | Agent | Result |
-|---------|-------|--------|
-| "Create an agent that..." | create-agent-agent | Creates new agent in your project |
-| "Update AGENTS.md" | doc-registry-agent | Refreshes local documentation |
-| "List all agents" | doc-registry-agent | Shows available agents |
-| "Update all agents" | distribute-agents-agent | Syncs latest from GitHub |
-| "Add new agents" | distribute-agents-agent | Downloads new agents only |
-
-**Example**: 
+"Add new agents"
 ```
-"Create an agent that monitors file changes"
-→ New agent in agents/file-monitor-agent/
-→ Available in your project only
+Downloads only new agents from GitHub. Preserves any customizations you've made locally.
+
+### Manual Sync
 ```
+"Distribute agents"
+or
+"Setup agents"
+```
+DAA auto-detects the best sync mode based on your lockfile.
 
 ## Lockfile
 
-The `agents.lockfile` prevents accidental overwrites:
+The `agents.lockfile` in your project root tracks:
+- When agents were last synced
+- Which agents are installed and at what version
+- Any local customizations (changes you made)
+- Protects against accidental overwrites
 
+**Example lockfile**:
 ```json
 {
   "synced_at": "2026-02-20T10:30:00Z",
@@ -182,67 +178,85 @@ The `agents.lockfile` prevents accidental overwrites:
   "agents": {
     "create-agent-agent": "1.0.0",
     "doc-registry-agent": "1.0.0",
-    "distribute-agents-agent": "1.0.0"
+    "distribute-agents-agent": "1.0.0",
+    "architecture-monitor-agent": "1.0.0",
+    "test-verification-agent": "1.0.0"
   },
   "customizations": {
-    "create-agent-agent": []
+    "create-agent-agent": ["Modified AGENT.md", "Added new skill"]
   }
 }
 ```
 
-**DAA respects lockfile**:
-- ✓ First sync creates it automatically
-- ✓ Subsequent syncs don't overwrite without permission
-- ✓ Tracks which agents were synced and at what version
-- ✓ Logs any local customizations
-
-## Updating Agents
-
-### Sync Latest (Full Update)
-```
-"Update all agents"
-```
-Replaces all agent files with latest versions from GitHub.
-
-### Add New Only (Safe Update)
-```
-"Add new agents"
-```
-Downloads only new agents from GitHub, preserves your customizations.
-
-### Check for Updates
-```
-"Check agent versions"
-or
-"Are there agent updates?"
-```
-Shows available updates without syncing.
+DAA respects the lockfile:
+- ✓ First sync: Creates lockfile automatically
+- ✓ Later syncs: Won't overwrite without permission
+- ✓ Customizations: Tracked and protected
+- ✓ Updates: Handled safely via sync modes
 
 ## Troubleshooting
 
-### Agents Not Syncing
-- Check if DAA is active: "Distribute agents" or "Sync agents"
-- Verify `agents.lockfile` exists in your project
-- Confirm internet connection (needs to reach GitHub)
+### Agents Not Syncing?
 
-### DAA Refuses to Update (Customizations Protected)
-- You modified agents locally (tracked in lockfile)
-- Use "Add new agents" to get new agents without replacing customizations
-- Or use "Update all agents" to replace all (will back up your changes)
+1. **Check internet connection** — DAA needs to reach GitHub
+2. **Verify permissions** — `.github/` directory must be writable
+3. **Force sync**: "Distribute agents" → "Setup agents"
+4. **Check lockfile**: Verify `agents.lockfile` exists in project root
 
-### Agent Not Found After Sync
-- Verify sync completed: check `agents.lockfile` was created
-- Check agent directory location: `.github/agents/` or `agent-kit/`
-- Reload AI assistant context after sync
+### Agent Not Found After Sync?
 
-### Configuration Not Applied
-- Verify `agent-kit/config.json` has valid JSON syntax
-- Check paths match your actual folder structure
-- Restart AI assistant or refresh file context
+1. **Verify sync completed** — look for `agents.lockfile`
+2. **Check location** — navigate to `.github/agents/`
+3. **Reload AI context** — close and reopen VS Code
+
+### DAA Refuses to Update (Customizations Protected)?
+
+You've modified agents locally. Options:
+
+- **Keep changes**: "Add new agents" (gets new agents only)
+- **Replace all**: "Update all agents" (DAA will back up changes)
+
+### Configuration Not Applied?
+
+1. **Verify syntax** — check `.github/config.json` for valid JSON
+2. **Check paths** — ensure paths match your actual folder structure
+3. **Restart** — close and reopen VS Code
+
+## Updating Agents Over Time
+
+### Initial Sync
+DAA creates `agents.lockfile` and copies all agents.
+
+### Adding New Agents
+```
+"Add new agents"
+```
+Downloads new agents from GitHub without replacing existing ones.
+
+### Full Update
+```
+"Update all agents"
+```
+Replaces all agents with latest versions. Warns if customizations exist.
+
+### Preserving Customizations
+- Always use "Add new agents" for safety
+- Customize agents *after* they're synced
+- DAA tracks changes in lockfile
+- Locked agents won't be overwritten accidentally
+
+## Getting Help
+
+### Read More
+- [README.md](README.md) — Quick overview
+- [AGENTS.md](AGENTS.md) — Complete agent catalog
+- Individual `AGENT.md` files — Agent-specific instructions
+
+### Examples
+See `/examples/` directory for integration patterns and workflows.
 
 ---
 
-**Next Steps**: 
-1. Let DAA auto-sync your project, OR manually copy agent-kit
-2. Review [AGENTS.md](AGENTS.md) to see available agents
-3. Start using agents with natural language: "Create an agent that..."
+**Version**: 1.0.0  
+**Last Updated**: 2026-02-20  
+**Repository**: https://github.com/skelacc/AGENTS-library

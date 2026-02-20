@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
   "paths": {
-    "agents_directory": "agents",
-    "skills_directory": "skills",
-    "prompts_directory": "prompts",
+    "agents_directory": ".github/agents",
+    "skills_directory": ".github/skills",
+    "prompts_directory": ".github/prompts",
     "templates_directory": "templates",
     "examples_directory": "examples"
   },
@@ -11,14 +11,16 @@
     "agents_file": "AGENTS.md",
     "location": "project_root"
   },
+  "agent_entry_point": "AGENT.md",
   "settings": {
     "auto_register": true,
     "line_limits": {
       "agent_json": 100,
-      "instructions": 150,
+      "agent_md": 150,
       "examples": 80,
       "skills": 100
     },
-    "naming_convention": "lowercase-hyphen-separated"
+    "naming_convention": "lowercase-hyphen-separated",
+    "vscode_copilot_compatible": true
   }
 }

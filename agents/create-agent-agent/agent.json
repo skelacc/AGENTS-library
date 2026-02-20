@@ -10,7 +10,7 @@
   "outputs": [
     "Complete agent folder structure in configured agents_directory",
     "agent.json with all required fields",
-    "instructions.md with standardized sections",
+    "AGENT.md with standardized sections (entry point for VS Code Copilot)",
     "examples.md with usage examples",
     "Documentation update preview for Doc-Registry-Agent"
   ],

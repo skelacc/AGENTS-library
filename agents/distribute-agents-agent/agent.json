@@ -9,7 +9,7 @@
     "Lockfile content (tracks synced agent versions and customizations)"
   ],
   "outputs": [
-    "Synchronized agents downloaded into project folder (.github/agents/, agent-kit/, or custom location)",
+    "Synchronized agents downloaded into project's .github/agents/ folder",
     "Updated agents.lockfile tracking versions and customizations",
     "Sync status reports with version information",
     "Conflict detection when local customizations exist"
@@ -53,11 +53,14 @@
   "configuration": {
     "github_source": "https://github.com/skelacc/AGENTS-library",
     "lockfile_name": "agents.lockfile",
-    "project_locations": [
+    "deployment_locations": [
+      ".github/agents"
+    ],
+    "lockfile_search_paths": [
       ".github/agents",
       "agent-kit",
       ".",
-      "docs/agent-kit"
+      "docs/"
     ]
   }
 }
