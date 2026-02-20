@@ -4,6 +4,11 @@ This file is kept for reference. The primary agent documentation is in **AGENT.m
 
 ## Key Implementation Points
 
+### Project Path Prompt
+- Always request or confirm the target project path when DAA is invoked.
+- Accept absolute or relative paths; resolve relative paths from the current workspace root.
+- If the path is missing or unclear, ask before performing any sync logic.
+
 ### Deployment Target
 DAA deploys agents to `.github/agents/` by default, not the entire agent-kit structure.
 

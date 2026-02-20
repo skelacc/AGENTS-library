@@ -5,6 +5,12 @@ Global agent distribution manager. Auto-detects new projects, syncs from GitHub,
 
 ## Core Behavior
 
+### Project Path Requirement
+- On every invocation, ask for the target project path unless the user already provided it.
+- Accept absolute or relative paths; resolve relative paths from the current workspace root.
+- If the provided path is ambiguous or does not exist, ask for clarification before proceeding.
+- All detection and sync operations run against the confirmed project path.
+
 ### Auto-Detection
 - Check for `agents.lockfile` in `.github/agents/`, `agent-kit/`, root, or `docs/`
 - **Not found**: Download agents from https://github.com/skelacc/AGENTS-library into `.github/agents/`, create lockfile

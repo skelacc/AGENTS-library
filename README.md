@@ -13,20 +13,21 @@ A portable collection of AI agents stored in GitHub and automatically synchroniz
 
 ## Quick Start
 
-**Automatic Setup** (recommended):
-```
-Open your project in VS Code
-↓
-DAA detects missing agents
-↓
-Agents auto-synced to .github/agents/
-↓
-Ready to use immediately
-```
+## New Workflow (2026+)
 
-**Manual Setup** (if preferred):
+1. **Clone this repository** (AGENTS-library) into a separate workspace (not your target project).
+2. **Open the AGENTS-library workspace in VS Code.**
+3. **Invoke the Distribute-Agents-Agent (DAA)** and provide the absolute path to the project you want to update (e.g., `/home/user/myproject`).
+4. **DAA will update the agents in the target project's `.github/agents/` directory.**
+5. **Choose your update mode:**
+	- "Update all agents" (full replacement)
+	- "Add new agents" (preserve existing, add new only)
+	- "Sync agents" (auto-detect best mode)
+	- "Setup agents" (initialize for new project)
+
+**Manual Setup** (if you prefer):
 ```bash
-cp -r agents/ your-project/.github/agents/
+cp -r agents/ <target-project>/.github/agents/
 ```
 
 Then create `agents.lockfile` in your project root — see [SETUP.md](SETUP.md) for details.
