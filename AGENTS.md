@@ -52,6 +52,16 @@ This document catalogs all agents included in the Agent-Kit collection. These ag
 
 ---
 
+## test-verification-agent
+**Purpose**: Generates tests, runs them, and records results under /tests/, plus persona walkthrough feedback with traceable evidence.
+**Scope**: Project purpose discovery, test authoring, test execution, UX persona walkthroughs
+**Status**: Active
+**Triggers**: "Generate tests", "Write tests", "Verify project functionality", "Run test validation", "Create user personas"
+**Location**: `agent-kit/agents/test-verification-agent/`
+**Outputs**: test-plan, test-cases, test-results, persona-walkthroughs, scope
+
+---
+
 ## Configuration
 
 All paths are configurable via `agent-kit/config.json`. Default structure:

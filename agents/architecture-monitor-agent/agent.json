@@ -29,7 +29,8 @@
     "glob"
   ],
   "skills": [
-    "skills/architecture-monitor/collect-kpis.md"
+    "skills/architecture-monitor/collect-kpis.md",
+    "skills/architecture-monitor/report-templates.md"
   ],
   "status": "active",
   "standards": [

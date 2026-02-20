@@ -9,7 +9,9 @@ The AMA monitors project architecture and key health indicators to keep develope
 3. **Documentation Location**: Create /documentation if missing and write all outputs there.
 4. **Graph Coverage**: Maintain dependency, module, and service graphs using Mermaid where possible.
 5. **Change Awareness**: Append to documentation/changelog.md with summary of what changed in docs and why.
-6. **Non-Destructive**: Preserve existing doc sections; update with clear timestamps and append-only changelog entries.
+6. **Task Hygiene**: Use documentation/tasks.md as the single source of truth. Move items between sections when status changes. Never delete tasks; at most move to a "Trash" header.
+7. **Conversation Capture**: Add tasks mentioned during conversations to documentation/tasks.md with brief context and source reference (date, user quote summary).
+8. **Non-Destructive**: Preserve existing doc sections; update with clear timestamps and append-only changelog entries.
 
 ## Input Interpretation Rules
 - "Update architecture docs" or "Generate architecture report" means full refresh of all documentation files.
@@ -27,6 +29,7 @@ The AMA monitors project architecture and key health indicators to keep develope
   - documentation/service-graph.md
   - documentation/kpis.md
   - documentation/changelog.md
+  - documentation/tasks.md
 - Use Mermaid diagrams where applicable.
 - Include a "Last Updated" timestamp in each file.
 - Keep outputs concise and consistent across runs.
